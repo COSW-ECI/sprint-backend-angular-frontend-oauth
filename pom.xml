@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.eci.cosw</groupId>
-    <artifactId>angular-js-rest-api-integration</artifactId>
+    <artifactId>angular-js-rest-api-base</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>angular-js-rest-api-integration-base</name>
+    <name>angular-js-rest-api-base</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
