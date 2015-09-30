@@ -5,17 +5,17 @@
         this.getData = function (dataid) {
             return [
             {
-                id: 1,
+                idproducto: 1,
                 nombre: "xbox",
                 precio: 32000
             },
             {
-                id: 2,
+                idproducto: 2,
                 nombre: "ipad",
                 precio: 12000
             },
             {
-                id: 3,
+                idproducto: 3,
                 nombre: "laptop",
                 precio: 42000
 
