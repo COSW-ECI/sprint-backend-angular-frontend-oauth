@@ -128,7 +128,7 @@
                 <configuration>
                     <scanIntervalSeconds>2</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>/restapi</contextPath>
+                        <contextPath>/myapp</contextPath>
                     </webApp>                    
                 </configuration>
             </plugin>
