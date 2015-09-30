@@ -15,11 +15,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html ng-app="modone">
+<html ng-app="ShoppingKart">
     <head >
         <script src="js/libs/angular.min.js"></script>
-        <script src="js/libs/angular-route.js"></script>
-        <script src="js/libs/appmodule.js"></script>
+        <script src="js/libs/angular-route.min.js"></script>
+        <!--<script src="js/app/productservices.js"></script>-->
+        <script src="js/app/shoppingkartcontroller.js"></script>
         
          <link rel="stylesheet" href="css/bootstrap.css">
         <title>sample app</title>
@@ -29,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
-    <body>
-        <div>TODO write content</div>
+    <body ng-controller="skcontroller">
+        Todo: implementar {{33+33}}
     </body>
 </html>
