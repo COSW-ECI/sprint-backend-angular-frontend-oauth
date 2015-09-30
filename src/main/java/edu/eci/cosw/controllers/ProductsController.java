@@ -42,7 +42,7 @@ public class ProductsController {
 
     
     @RequestMapping(method = RequestMethod.GET)        
-    public List<Producto> allProducts() {       
+    public List<Producto> allProducts() {        
         return services.getAllProducts();
     }
     

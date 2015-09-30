@@ -2,7 +2,7 @@
     var app = angular.module('ProductServices', []);
 
     app.service('ProductsRestAPI', function ($http) {
-        this.getData = function (dataid) {
+        this.getProducts = function (dataid) {
             return [
             {
                 idproducto: 1,
