@@ -6,8 +6,11 @@
 package edu.eci.cosw.services;
 
 import edu.eci.cosw.samples.model.Producto;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,22 +19,26 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ServicesFacade {
-   
-    private static final List<Producto> dummyProductsData=new LinkedList<>();
+       
+    private static final Map<Integer,Producto> dummyProductsDataMap=new Hashtable<>();
     
     static{
-        dummyProductsData.add(new Producto(1,"producto 1",100));
-        dummyProductsData.add(new Producto(2,"producto 2",200));
-        dummyProductsData.add(new Producto(3,"producto 3",300));
-        dummyProductsData.add(new Producto(4,"producto 4",400));
+        for (int i=0;i<20;i++){
+            Producto p=new Producto(i,"Producto "+i,100*i);
+            dummyProductsDataMap.put(p.getIdproducto(),p);
+        }
     }
     
     public void addNewProduct(Producto p){
-        dummyProductsData.add(p);
+        dummyProductsDataMap.put(p.getIdproducto(),p);
     }
     
     public List<Producto> getAllProducts(){
-        return dummyProductsData;
+        return new LinkedList(dummyProductsDataMap.values());
+    }
+    
+    public Producto getProduct(int idprod){
+        return dummyProductsDataMap.get(idprod);
     }
     
 }
