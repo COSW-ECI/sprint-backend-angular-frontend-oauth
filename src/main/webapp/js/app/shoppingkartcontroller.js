@@ -19,12 +19,19 @@
         
         $scope.availableProducts=[];
         
+        $scope.selectedProducts=[];
+        
         $scope.selectedProductId=-1;
 
         $scope.selectedProductDetail=null;
         
         $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise();
-                
+        
+        $scope.addToSelectedProducts=function(){            
+            $scope.selectedProducts.push($scope.selectedProductDetail);
+            console.log('Shopping kart updated'+JSON.stringify($scope.selectedProducts));
+        };
+        
         $scope.availableProdRequestPromise.then(
                 //promise success
                 function(response){

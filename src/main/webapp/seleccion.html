@@ -21,17 +21,21 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
             </div>
             <div class="col-sm-6" style="background-color:lavenderblush;">
-                {{selectedProductDetail}}
-                
-                <div ng-if="selectedProductDetail!==null">
-                    <button value="OK" ng-click="increment()">Agregar al carro de compras.</button>
+
+
+                Número de items seleccionados: {{selectedProducts.length}}
+                <div ng-if="selectedProductDetail !== null">
+                    <button value="OK" ng-click="addToSelectedProducts()">Agregar al carro de compras.</button>
                 </div>
+                
             </div>
+
+
         </div>
     </div>
-
-
 </div>
+
+
