@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+    <head >
+        <script src="js/libs/angular.min.js"></script>
+        <script src="js/libs/angular-route.min.js"></script>
+        <script src="js/app/productservices.js"></script>
+        <script src="js/app/shoppingkartcontroller.js"></script>
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <title>sample app</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body ng-app="ShoppingKart">
+
+        <div ng-controller="skcontroller">
+
+            <header>
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            Manejador de productos                    
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">                    
+                            <li><a href="#new"><i class="fa fa-shield"></i> Seleccionar productos</a></li>
+                            <li><a href="#list"><i class="fa fa-comment"></i> Checkout</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>   
+
+            <div id="main">
+
+                <!-- angular templating -->
+                <!-- this is where content will be injected -->
+                <div ng-view></div>
+
+            </div>
+
+        </div>
+
+    </body>
+</html>
