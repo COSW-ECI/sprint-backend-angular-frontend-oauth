@@ -1,6 +1,37 @@
 <div ng-controller="skcontroller">
     <h1> Selección de productos </h1>
-    
-    {{availableProducts}}
-    
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-6" style="background-color:lavender;">
+
+                <table class="table table-striped" style="cursor: pointer;">
+                    <thead>
+                        <tr>
+                            <th>Nombre del producto</th>
+                            <th>Precio</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="prod in availableProducts" ng-click="setSelectedProduct(prod.idproducto)">                            
+                            <td>{{ prod.nombre}}</td>
+                            <td>{{ prod.precio}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+            <div class="col-sm-6" style="background-color:lavenderblush;">
+                {{selectedProductDetail}}
+                
+                <div ng-if="selectedProductDetail!==null">
+                    <button value="OK" ng-click="increment()">Agregar al carro de compras.</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>

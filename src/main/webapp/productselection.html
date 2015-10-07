@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <body ng-controller="skcontroller">
         
         <table style="cursor: pointer;">
-            <tr ng-repeat="x in data" ng-click="setSelected(x.id)">
+            <tr ng-repeat="x in data" ng-click="setSelected(x.idproducto)">
               <td>{{ x.nombre }}</td>
               <td>{{ x.precio }}</td>
             </tr>

@@ -19,19 +19,42 @@
         
         $scope.availableProducts=[];
         
-        $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise();
+        $scope.selectedProductId=-1;
+
+        $scope.selectedProductDetail=null;
         
+        $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise();
+                
         $scope.availableProdRequestPromise.then(
-                function successCallback(response){
-                    console.log(response.data);
-                    alert('done!'+response.data[0]);
+                //promise success
+                function(response){
+                    console.log(response.data);                    
                     $scope.availableProducts=response.data;                    
                 },
-                function errorCallback(response){
-                    alert('error');
+                //promise error
+                function(response){
+                    console.log('Unable to get data from REST API:'+response);
                 }
         );
-                
+
+        $scope.setSelectedProduct=function(idprod){
+            $scope.selectedProductId=idprod;
+            
+            ProductsRestAPI.productByIdRequestPromise(idprod).then(
+                //promise success
+                function(response){
+                    console.log(response.data);                    
+                    $scope.selectedProductDetail=response.data;                    
+                },
+                //promise error
+                function(response){
+                    console.log('Unable to get data from REST API:'+response);
+                }
+            );
+            
+        };             
+        
+        
     }
     );
 
