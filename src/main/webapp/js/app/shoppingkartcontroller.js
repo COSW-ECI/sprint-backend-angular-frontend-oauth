@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('ShoppingKart', ['ngRoute']);
+    var app = angular.module('ShoppingKart', ['ngRoute','ProductServices']);
 
     app.config(function ($routeProvider) {
         $routeProvider
@@ -15,12 +15,23 @@
     });
 
 
-    app.controller('skcontroller', function ($scope,$location) {
+    app.controller('skcontroller', function ($scope,ProductsRestAPI) {
         
         $scope.availableProducts=[];
         
+        $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise();
         
-        
+        $scope.availableProdRequestPromise.then(
+                function successCallback(response){
+                    console.log(response.data);
+                    alert('done!'+response.data[0]);
+                    $scope.availableProducts=response.data;                    
+                },
+                function errorCallback(response){
+                    alert('error');
+                }
+        );
+                
     }
     );
 
