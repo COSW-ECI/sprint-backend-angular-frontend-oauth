@@ -31,6 +31,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
     <body ng-controller="skcontroller">
-        Todo: implementar {{33+33}}
+        
+        <table style="cursor: pointer;">
+            <tr ng-repeat="x in data" ng-click="setSelected(x.id)">
+              <td>{{ x.nombre }}</td>
+              <td>{{ x.precio }}</td>
+            </tr>
+          </table>
+        selected:{{selected}}
+        <button value="OK" ng-click="increment()">ssss</button>
+        
+        
     </body>
 </html>

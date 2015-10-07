@@ -16,7 +16,11 @@
 
 
     app.controller('skcontroller', function ($scope,$location) {
-
+        
+        $scope.availableProducts=[];
+        
+        
+        
     }
     );
 

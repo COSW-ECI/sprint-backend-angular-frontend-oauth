@@ -2,26 +2,19 @@
     var app = angular.module('ProductServices', []);
 
     app.service('ProductsRestAPI', function ($http) {
-        this.getProducts = function (dataid) {
-            return [
-            {
-                idproducto: 1,
-                nombre: "xbox",
-                precio: 32000
-            },
-            {
-                idproducto: 2,
-                nombre: "ipad",
-                precio: 12000
-            },
-            {
-                idproducto: 3,
-                nombre: "laptop",
-                precio: 42000
-
-            }
-            ];
+        this.productsRequestPromise = function () {            
+            return $http({
+                method: 'GET',
+                url: 'rest/products'
+            });            
         };
+        this.productByIdRequestPromise = function (idprod) {            
+            return $http({
+                method: 'GET',
+                url: 'rest/products/'+idprod
+            });            
+        };
+
     }
     );
 
