@@ -9,6 +9,7 @@ package edu.eci.cosw.oauthsec;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -31,6 +32,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider{
         
         boolean result=user.equals("myuser") && pwd.equals("mypassword");
 
+        LOG.info("Checking user and password:"+user+","+pwd);
         
         if (result) {
             List<GrantedAuthority> grantedAuthorities
@@ -45,6 +47,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider{
         }
         
     }
+    private static final Logger LOG = Logger.getLogger(UserAuthenticationProvider.class.getName());
 
     @Override
     public boolean supports(Class<?> type) {

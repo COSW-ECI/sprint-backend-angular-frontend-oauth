@@ -56,7 +56,7 @@
     </bean>
      
     <bean id="clientDetails" class="edu.eci.cosw.oauthsec.GuestServiceImpl">     
-        <property name="id" value="mysupplycompany" />
+        <property name="id" value="mycompany" />
         <property name="secretKey" value="mycompanykey" />
     </bean>
      
