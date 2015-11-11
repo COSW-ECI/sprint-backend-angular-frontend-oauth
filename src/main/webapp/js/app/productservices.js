@@ -3,14 +3,16 @@
 
     app.service('ProductsRestAPI', function ($http) {
         
-        this.productsRequestPromise = function () {            
+        this.productsRequestPromise = function (token) {            
+            $http.defaults.headers.common['Authorization'] = "Bearer " + token;
             return $http({
                 method: 'GET',
                 url: 'rest/products'
             });            
         };
         
-        this.productByIdRequestPromise = function (idprod) {            
+        this.productByIdRequestPromise = function (idprod,token) {  
+            $http.defaults.headers.common['Authorization'] = "Bearer " + token;
             return $http({
                 method: 'GET',
                 url: 'rest/products/'+idprod

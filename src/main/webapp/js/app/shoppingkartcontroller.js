@@ -15,7 +15,7 @@
     });
 
 
-    app.controller('loginController',function($scope,OAuthServices){
+    app.controller('loginController',function($scope,OAuthServices,tokenFactory){
         
         this.userName="";
         this.password="";
@@ -25,19 +25,20 @@
             console.log("OAuth2 token generation for "+","+this.userName);
             loginPromise.then(
                 //success
-                function(response){
-                    console.log("Success:"+response);
+                function(response){                    
+                    console.log(response.data.access_token);
+                    tokenFactory.setToken(response.data.access_token);
                 },
                 //error
                 function(response){
-                    console.log("Error:"+response);
+                    console.log("Error:"+JSON.stringify(response));
                 }
             );
         };
         
     });
 
-    app.controller('skcontroller', function ($scope,ProductsRestAPI) {
+    app.controller('skcontroller', function ($scope,ProductsRestAPI,tokenFactory) {
         
         $scope.availableProducts=[];
         
@@ -47,7 +48,7 @@
 
         $scope.selectedProductDetail=null;
         
-        $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise();
+        $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise(tokenFactory.getToken());
         
         $scope.addToSelectedProducts=function(){            
             $scope.selectedProducts.push($scope.selectedProductDetail);
