@@ -11,18 +11,6 @@
     </session-config>
     
     
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    
-    <context-param>  
-        <param-name>contextConfigLocation</param-name>  
-        <param-value>classpath:applicationContext.xml</param-value>  
-    </context-param>  
-
-    
-    
-    
     <!-- SPRING MVC -->
     
     <servlet>
@@ -31,7 +19,7 @@
         <load-on-startup>1</load-on-startup>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring-dispatcher.xml</param-value>
+            <param-value>classpath:applicationContext.xml</param-value>
         </init-param>          
     </servlet>
         
