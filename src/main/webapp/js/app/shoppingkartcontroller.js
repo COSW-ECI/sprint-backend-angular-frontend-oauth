@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('ShoppingKart', ['ngRoute','ProductServices','SecurityModule']);
+    var app = angular.module('ShoppingKart', ['ngRoute','ProductServices']);
 
     app.config(function ($routeProvider) {
         $routeProvider
@@ -15,32 +15,9 @@
     });
 
 
-    app.controller('loginController',function($scope,OAuthServices,tokenFactory){
-        
-        $scope.userName="";
-        $scope.password="";
-        
-        this.login=function(){
-            console.log("OAuth2 token generation for "+","+$scope.userName);
-            loginPromise=OAuthServices.loginPromise($scope.userName,$scope.password);
-            
-            loginPromise.then(
-                //success
-                function(response){                    
-                    console.log(response.data.access_token);
-                    tokenFactory.setToken(response.data.access_token);                    
-                    tokenFactory.setUser($scope.userName);
-                },
-                //error
-                function(response){
-                    console.log("Error:"+JSON.stringify(response));
-                }
-            );
-        };
-        
-    });
+    
 
-    app.controller('skcontroller', function ($scope,ProductsRestAPI,tokenFactory) {
+    app.controller('skcontroller', function ($scope,ProductsRestAPI) {
         
         $scope.availableProducts=[];
         
@@ -50,9 +27,9 @@
 
         $scope.selectedProductDetail=null;
         
-        $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise(tokenFactory.getToken());
+        $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise();
         
-        $scope.currentUser=tokenFactory.getUser();
+        
         
         
         $scope.addToSelectedProducts=function(){            
@@ -75,7 +52,7 @@
         $scope.setSelectedProduct=function(idprod){
             $scope.selectedProductId=idprod;
             
-            ProductsRestAPI.productByIdRequestPromise(idprod,tokenFactory.getToken()).then(
+            ProductsRestAPI.productByIdRequestPromise(idprod).then(
                 //promise success
                 function(response){
                     console.log(response.data);                    
@@ -92,26 +69,7 @@
     });
 
 
-    app.factory('tokenFactory', function () {
-        var data = {
-            token: "",
-            user:"anonymous"
-        };
-        return {
-            getUser: function(){
-                return data.user;
-            },
-            setUser: function(un){                
-                data.user=un;
-            },
-            getToken: function () {
-                return data.token;
-            },
-            setToken: function (tk) {
-                data.token=tk;
-            }
-        };
-    });
+
 
 })();
 
