@@ -10,26 +10,6 @@
         </session-timeout> 
     </session-config>
     
-    <!-- SPRING MVC -->
-    <servlet>
-        <servlet-name>api</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring-dispatcher.xml</param-value>
-        </init-param>          
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>api</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>api</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
     
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -39,12 +19,11 @@
         <param-name>contextConfigLocation</param-name>  
         <param-value>classpath:applicationContext.xml</param-value>  
     </context-param>  
+
     
     <!--SPRING SECURITY-->
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:security-context.xml</param-value>
@@ -61,6 +40,31 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    
+    <!-- SPRING MVC -->
+    
+    <servlet>
+        <servlet-name>api</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-dispatcher.xml</param-value>
+        </init-param>          
+    </servlet>
+    
+    <!--<servlet-mapping>
+        <servlet-name>api</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>-->
+    
+    <servlet-mapping>
+        <servlet-name>api</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    
+    
     
     
 </web-app>
