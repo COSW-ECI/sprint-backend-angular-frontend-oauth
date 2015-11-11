@@ -17,17 +17,19 @@
 
     app.controller('loginController',function($scope,OAuthServices,tokenFactory){
         
-        this.userName="";
-        this.password="";
+        $scope.userName="";
+        $scope.password="";
         
         this.login=function(){
-            loginPromise=OAuthServices.loginPromise(this.userName,this.password);
-            console.log("OAuth2 token generation for "+","+this.userName);
+            console.log("OAuth2 token generation for "+","+$scope.userName);
+            loginPromise=OAuthServices.loginPromise($scope.userName,$scope.password);
+            
             loginPromise.then(
                 //success
                 function(response){                    
                     console.log(response.data.access_token);
-                    tokenFactory.setToken(response.data.access_token);
+                    tokenFactory.setToken(response.data.access_token);                    
+                    tokenFactory.setUser($scope.userName);
                 },
                 //error
                 function(response){
@@ -50,6 +52,9 @@
         
         $scope.availableProdRequestPromise=ProductsRestAPI.productsRequestPromise(tokenFactory.getToken());
         
+        $scope.currentUser=tokenFactory.getUser();
+        
+        
         $scope.addToSelectedProducts=function(){            
             $scope.selectedProducts.push($scope.selectedProductDetail);
             console.log('Shopping kart updated'+JSON.stringify($scope.selectedProducts));
@@ -70,7 +75,7 @@
         $scope.setSelectedProduct=function(idprod){
             $scope.selectedProductId=idprod;
             
-            ProductsRestAPI.productByIdRequestPromise(idprod).then(
+            ProductsRestAPI.productByIdRequestPromise(idprod,tokenFactory.getToken()).then(
                 //promise success
                 function(response){
                     console.log(response.data);                    
@@ -89,9 +94,16 @@
 
     app.factory('tokenFactory', function () {
         var data = {
-            token: ""
+            token: "",
+            user:"anonymous"
         };
         return {
+            getUser: function(){
+                return data.user;
+            },
+            setUser: function(un){                
+                data.user=un;
+            },
             getToken: function () {
                 return data.token;
             },

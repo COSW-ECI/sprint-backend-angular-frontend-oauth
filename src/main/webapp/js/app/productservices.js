@@ -20,7 +20,7 @@
         };
         
         this.calculateShoppingKartCost=function(selectedProducts){
-            console.log("calculating from:"+selectedProducts)
+            console.log("calculating from:"+selectedProducts);
             var total=0;
             selectedProducts.map( function(item) {
                 total+=item.precio;
