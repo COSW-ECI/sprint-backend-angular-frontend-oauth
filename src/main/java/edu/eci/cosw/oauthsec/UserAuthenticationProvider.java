@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package edu.eci.cosw.controllers.oauthsec;
+package edu.eci.cosw.oauthsec;
 
 import java.util.ArrayList;
 import java.util.Collection;
