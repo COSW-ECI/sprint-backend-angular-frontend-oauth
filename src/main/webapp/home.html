@@ -1,5 +1,11 @@
-<div>
+<div ng-controller="loginController as lc">
     
-    <h1>MANEJADOR DE PRODUCTOS</h1>
+    <h1>LOGIN</h1>
+    
+    <form >
+        <input type="text" ng-model="lc.userName"/>
+        <input type="password" ng-model="lc.password"/>
+        <button ng-click="lc.login()">Login</button>
+    </form>
     
 </div>

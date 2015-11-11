@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('ShoppingKart', ['ngRoute','ProductServices']);
+    var app = angular.module('ShoppingKart', ['ngRoute','ProductServices','SecurityModule']);
 
     app.config(function ($routeProvider) {
         $routeProvider
@@ -14,6 +14,28 @@
                 });
     });
 
+
+    app.controller('loginController',function($scope,OAuthServices){
+        
+        this.userName="";
+        this.password="";
+        
+        this.login=function(){
+            loginPromise=OAuthServices.loginPromise(this.userName,this.password);
+            console.log("OAuth2 token generation for "+","+this.userName);
+            loginPromise.then(
+                //success
+                function(response){
+                    console.log("Success:"+response);
+                },
+                //error
+                function(response){
+                    console.log("Error:"+response);
+                }
+            );
+        };
+        
+    });
 
     app.controller('skcontroller', function ($scope,ProductsRestAPI) {
         
@@ -59,11 +81,24 @@
                 }
             );
             
-        };             
+        };  
         
-        
-    }
-    );
+    });
+
+
+    app.factory('tokenFactory', function () {
+        var data = {
+            token: ""
+        };
+        return {
+            getToken: function () {
+                return data.token;
+            },
+            setToken: function (tk) {
+                data.token=tk;
+            }
+        };
+    });
 
 })();
 

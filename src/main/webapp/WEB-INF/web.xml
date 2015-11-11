@@ -53,12 +53,7 @@
             <param-value>classpath:spring-dispatcher.xml</param-value>
         </init-param>          
     </servlet>
-    
-    <!--<servlet-mapping>
-        <servlet-name>api</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>-->
-    
+        
     <servlet-mapping>
         <servlet-name>api</servlet-name>
         <url-pattern>/*</url-pattern>
